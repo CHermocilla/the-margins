@@ -59,3 +59,50 @@ footer{padding:23px 4%}
 
 /* Supabase author studio */
 .login-panel{max-width:480px;border:1px solid var(--line);padding:28px}.login-panel label{display:block;margin:0 0 20px;color:var(--muted)}.login-panel input{display:block;background:var(--input-bg);border:1px solid var(--line);color:var(--ink);padding:12px;width:100%;margin-top:8px}.chapter-tools{display:flex;align-items:center;justify-content:space-between;margin:32px 0 14px;border-top:1px solid var(--line);padding-top:15px}.chapter-tools h2{font:400 23px var(--serif)}.chapter-tools button,.chapter-tabs button,.editor-actions button:not(.primary),.danger-zone button{padding:9px 12px;border:1px solid var(--line);background:var(--soft);color:var(--ink)}.chapter-tabs{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:18px}.chapter-tabs button.selected{border-color:var(--wine);color:var(--wine)}.chapter-editor{border-top:1px solid var(--line);padding-top:20px}.editor-actions,.danger-zone{display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin-top:20px}.editor-actions span{color:var(--muted);font-size:12px}.danger-zone{padding-top:20px;border-top:1px solid var(--line)}.danger-zone button{color:var(--wine)}.danger-zone a{color:var(--wine)}.file-import input{padding:8px!important}.chapter-picker{display:block;margin:0 auto 25px;max-width:370px;color:var(--muted)}.chapter-picker select{display:block;width:100%;background:var(--input-bg);color:var(--ink);padding:10px;margin-top:7px;border:1px solid var(--line)}.prose-content p{font:17px/2 Georgia,serif;white-space:pre-wrap;margin-bottom:25px}.reader-navigation{display:flex;justify-content:space-between;gap:14px}.reader-navigation button{padding:10px 15px;background:var(--soft);border:1px solid var(--line);color:var(--ink)}.reader-navigation button:disabled{opacity:.4;cursor:default}
+
+
+/* Reading comfort refresh — typography + small screens only. */
+.reader{max-width:980px;padding:34px clamp(16px,4vw,32px) 75px}
+.reader-header{margin:30px auto 42px;max-width:760px}
+.reader-header h1{font:400 clamp(30px,3.7vw,45px)/1.15 var(--serif);letter-spacing:-.03em;margin:12px 0 14px;overflow-wrap:anywhere}
+.reader-header p{font-size:14px;line-height:1.65;max-width:620px}
+.reader-header .tags{margin-top:14px}
+.reader-meta{font-size:12px;margin-top:15px}
+.chapter-picker{max-width:490px;margin-bottom:24px;font-size:12px}
+.chapter-picker select{font-size:14px;min-height:44px;border-radius:3px}
+.chapter{padding:34px clamp(0px,3vw,36px) 35px}
+.chapter .kicker{font-size:10px}
+.chapter h2{font:400 clamp(24px,3vw,32px)/1.25 var(--serif);margin:10px 0 26px;overflow-wrap:anywhere}
+.prose-content{max-width:690px;margin:0 auto;font-family:Georgia, 'Times New Roman', serif}
+.prose-content p{font:400 16px/1.8 Georgia, 'Times New Roman', serif;white-space:pre-wrap;margin:0 0 1.2em;overflow-wrap:break-word}
+.prose-content .story-divider{border:0;border-top:1px solid var(--line);width:42%;margin:28px auto}
+.chapter-end{margin:30px 0;font-size:20px}
+.reader-navigation{max-width:690px;margin:0 auto}
+.reader-navigation button{min-height:42px}
+@media(max-width:720px){
+  .top{align-items:flex-start;gap:10px}
+  .top nav{flex-wrap:wrap;gap:10px 16px}
+  .theme-controls{gap:6px}
+  .reader{padding:20px 16px 54px}
+  .reader-header{margin:22px auto 30px}
+  .reader-header h1{font-size:clamp(29px,8vw,38px);line-height:1.14}
+  .reader-header p{font-size:13px;line-height:1.6}
+  .chapter-picker{max-width:100%;margin-bottom:20px}
+  .chapter{padding:27px 0 30px}
+  .chapter h2{font-size:clamp(23px,6vw,29px);margin-bottom:20px}
+  .prose-content p{font-size:15px;line-height:1.75;margin-bottom:1.1em}
+  .reader-navigation button{padding:10px 12px}
+  .studio{padding:22px 16px 65px}
+  .studio-head{margin:20px 0 25px;flex-wrap:wrap}
+  .studio-head h1{font-size:32px}
+  .studio-grid{min-height:0}
+  .studio-sidebar{padding:14px 12px}
+  .editor{padding:20px 14px}
+  .editor-bottom{flex-wrap:wrap;align-items:flex-start}
+  .editor-bottom label,.editor-bottom select{max-width:100%}
+  .editor textarea{max-width:100%}
+  .chapter-tools{flex-wrap:wrap;gap:12px}
+  .chapter-tabs button{overflow-wrap:anywhere;max-width:100%}
+  .archive-intro h1{font-size:32px}
+}
+@media(max-width:380px){.reader{padding-left:12px;padding-right:12px}.top nav{width:100%}.prose-content p{font-size:15px}}
