@@ -1,24 +1,34 @@
 'use client';
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 import { useEditor, EditorContent } from '@tiptap/react';
 import StarterKit from '@tiptap/starter-kit';
 import { chapterToHtml, chapterWordCount, readableText } from '../lib/story-format';
 
 type Props = { value: string; onChange: (html: string) => void; readOnly?: boolean };
 export default function ChapterRichEditor({ value, onChange, readOnly = false }: Props) {
+  const lastEmittedHtml = useRef<string | null>(null);
   const editor = useEditor({
     extensions: [StarterKit],
     content: chapterToHtml(value),
     editable: !readOnly,
     immediatelyRender: false,
-    onUpdate: ({ editor }) => { if (!readOnly) onChange(editor.getHTML()); },
+    onUpdate: ({ editor }) => {
+      if (readOnly) return;
+      const html = editor.getHTML();
+      lastEmittedHtml.current = html;
+      onChange(html);
+    },
     editorProps: { attributes: { class: readOnly ? 'rich-editor-body rich-reader-body' : 'rich-editor-body', 'aria-label': 'Chapter text' } },
   });
   // Keep uploaded text or changes to the selected chapter in sync with the editor.
   useEffect(() => {
     if (!editor) return;
+    // Local typing already changed the editor. Do not re-inject it: setContent
+    // can reset selection and cause the page to jump when typing or clicking.
+    if (value === lastEmittedHtml.current) return;
     const html = chapterToHtml(value);
     if (editor.getHTML() !== html) editor.commands.setContent(html, { emitUpdate: false });
+    lastEmittedHtml.current = value;
   }, [editor, value]);
   if (!editor) return <div className="rich-editor-loading">Loading editor…</div>;
   const toolbar = [
