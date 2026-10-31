@@ -1,0 +1,3 @@
+import Link from 'next/link';
+import {collections} from '../../lib/data';
+export default function Collections(){return <main className="archive-page"><div className="archive-intro"><span className="overline">ORGANIZED SHELVES</span><h1>Collections</h1><p>Grouped worlds, alternate universes, and shorter works.</p></div><section className="archive-section"><div className="index-heading"><h2>All collections</h2><span>{collections.length} collections</span></div><div className="archive-results">{collections.map(c=><article className="collection-entry" key={c.name}><h3>{c.name}</h3><p>{c.description}</p><span>{c.count} sample works</span></article>)}</div></section><div className="return-row"><Link href="/">← Back to works</Link></div></main>}
