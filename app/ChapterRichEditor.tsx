@@ -20,14 +20,6 @@ export default function ChapterRichEditor({ value, onChange, readOnly = false }:
   // Tiptap owns its document while typing. Never call setContent on each
   // parent update: that resets selection and can scroll a long chapter upward.
   // The dashboard remounts this component only on chapter change or file import.
-  if (!editor) return;
-    // Local typing already changed the editor. Do not re-inject it: setContent
-    // can reset selection and cause the page to jump when typing or clicking.
-    if (value === lastEmittedHtml.current) return;
-    const html = chapterToHtml(value);
-    if (editor.getHTML() !== html) editor.commands.setContent(html, { emitUpdate: false });
-    lastEmittedHtml.current = value;
-  }, [editor, value]);
   if (!editor) return <div className="rich-editor-loading">Loading editor…</div>;
   const toolbar = [
     { label: 'Bold', symbol: 'B', active: editor.isActive('bold'), run: () => editor.chain().focus().toggleBold().run(), title: 'Bold (Ctrl+B)' },
