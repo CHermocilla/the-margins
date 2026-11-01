@@ -179,3 +179,18 @@ footer{padding:23px 4%}
   .reader-header > p{font-size:13px;line-height:1.7}
   .reader-header .tags.center{margin-top:18px}
 }
+
+/* Remove borders around published chapter text */
+.chapter-content,
+.chapter-content .ProseMirror,
+.chapter-content .tiptap {
+  border: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+  background: transparent !important;
+}
+
+/* Keep the reading area clean */
+.chapter-content {
+  padding: 0 !important;
+}
