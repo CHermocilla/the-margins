@@ -144,3 +144,11 @@ footer{padding:23px 4%}
 @media (max-width: 600px) {
   .rich-editor-shell .rich-editor-body.ProseMirror { font-size: 15px; line-height: 1.75; }
 }
+
+/* Archive filters: wrap neatly on tablets and phones */
+.archive-toolbar {display:flex;flex-wrap:wrap;align-items:end;gap:12px;}
+.archive-toolbar .archive-search {flex:2 1 225px;min-width:0;}
+.archive-toolbar .archive-select {flex:1 1 145px;min-width:0;}
+.archive-toolbar input,.archive-toolbar select {width:100%;max-width:100%;box-sizing:border-box;}
+.archive-toolbar .clear-filter {flex:0 0 auto;}
+@media (max-width:620px){.archive-toolbar .archive-search {flex-basis:100%;}.archive-toolbar .archive-select {flex:1 1 calc(50% - 12px);}.archive-toolbar .clear-filter {width:100%;}.entry-meta {flex-wrap:wrap;}}
