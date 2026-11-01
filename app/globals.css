@@ -179,3 +179,21 @@ footer{padding:23px 4%}
   .reader-header > p{font-size:13px;line-height:1.7}
   .reader-header .tags.center{margin-top:18px}
 }
+
+/* Published work reader only: remove the Tiptap editor shell border.
+   Keep formatting, scene-break rules, and dashboard editor outlines intact. */
+.prose-content .rich-editor-shell {
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+  background: transparent;
+  overflow: visible;
+}
+.prose-content .rich-reader-body {
+  border: 0;
+  outline: 0;
+  box-shadow: none;
+  padding: 0;
+  min-height: 0;
+  background: transparent;
+}
