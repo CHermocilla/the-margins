@@ -1,12 +1,10 @@
 'use client';
-import { useEffect, useRef } from 'react';
 import { useEditor, EditorContent } from '@tiptap/react';
 import StarterKit from '@tiptap/starter-kit';
 import { chapterToHtml, chapterWordCount, readableText } from '../lib/story-format';
 
 type Props = { value: string; onChange: (html: string) => void; readOnly?: boolean };
 export default function ChapterRichEditor({ value, onChange, readOnly = false }: Props) {
-  const lastEmittedHtml = useRef<string | null>(null);
   const editor = useEditor({
     extensions: [StarterKit],
     content: chapterToHtml(value),
@@ -15,14 +13,14 @@ export default function ChapterRichEditor({ value, onChange, readOnly = false }:
     onUpdate: ({ editor }) => {
       if (readOnly) return;
       const html = editor.getHTML();
-      lastEmittedHtml.current = html;
       onChange(html);
     },
     editorProps: { attributes: { class: readOnly ? 'rich-editor-body rich-reader-body' : 'rich-editor-body', 'aria-label': 'Chapter text' } },
   });
-  // Keep uploaded text or changes to the selected chapter in sync with the editor.
-  useEffect(() => {
-    if (!editor) return;
+  // Tiptap owns its document while typing. Never call setContent on each
+  // parent update: that resets selection and can scroll a long chapter upward.
+  // The dashboard remounts this component only on chapter change or file import.
+  if (!editor) return;
     // Local typing already changed the editor. Do not re-inject it: setContent
     // can reset selection and cause the page to jump when typing or clicking.
     if (value === lastEmittedHtml.current) return;
