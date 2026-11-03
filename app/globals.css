@@ -197,3 +197,32 @@ footer{padding:23px 4%}
   min-height: 0;
   background: transparent;
 }
+
+
+/* Collections: subtle interactive links (theme-aware). */
+.collection-entry p a {
+  display: inline-block;
+  max-width: 100%;
+  padding: 7px 12px;
+  margin-left: -12px;
+  border-radius: 5px;
+  overflow-wrap: anywhere;
+  color: var(--ink);
+  text-decoration: none;
+  transition: background-color 160ms ease, color 160ms ease, transform 160ms ease;
+}
+.collection-entry p a:hover,
+.collection-entry p a:focus-visible {
+  color: var(--wine);
+  background: var(--hover-bg);
+  transform: translateX(4px);
+}
+.collection-entry p a:focus-visible {
+  outline: 2px solid var(--wine);
+  outline-offset: 2px;
+}
+@media (prefers-reduced-motion: reduce) {
+  .collection-entry p a { transition: none; }
+  .collection-entry p a:hover,
+  .collection-entry p a:focus-visible { transform: none; }
+}
