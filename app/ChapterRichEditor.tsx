@@ -1,12 +1,13 @@
 'use client';
 import { useEditor, EditorContent } from '@tiptap/react';
 import StarterKit from '@tiptap/starter-kit';
+import TextAlign from '@tiptap/extension-text-align';
 import { chapterToHtml, chapterWordCount, readableText } from '../lib/story-format';
 
 type Props = { value: string; onChange: (html: string) => void; readOnly?: boolean };
 export default function ChapterRichEditor({ value, onChange, readOnly = false }: Props) {
   const editor = useEditor({
-    extensions: [StarterKit],
+    extensions: [StarterKit, TextAlign.configure({ types: ['heading', 'paragraph'], alignments: ['left', 'center', 'right', 'justify'] })],
     content: chapterToHtml(value),
     editable: !readOnly,
     immediatelyRender: false,
@@ -27,6 +28,10 @@ export default function ChapterRichEditor({ value, onChange, readOnly = false }:
     { label: 'Strike', symbol: 'S̶', active: editor.isActive('strike'), run: () => editor.chain().focus().toggleStrike().run(), title: 'Strikethrough' },
     { label: 'Blockquote', symbol: '❝', active: editor.isActive('blockquote'), run: () => editor.chain().focus().toggleBlockquote().run(), title: 'Blockquote' },
     { label: 'Bullet list', symbol: '• List', active: editor.isActive('bulletList'), run: () => editor.chain().focus().toggleBulletList().run(), title: 'Bullet list' },
+    { label: 'Align left', symbol: '≡', active: editor.isActive({ textAlign: 'left' }), run: () => editor.chain().focus().setTextAlign('left').run(), title: 'Align left' },
+    { label: 'Center', symbol: '☷', active: editor.isActive({ textAlign: 'center' }), run: () => editor.chain().focus().setTextAlign('center').run(), title: 'Center text' },
+    { label: 'Align right', symbol: '≡', active: editor.isActive({ textAlign: 'right' }), run: () => editor.chain().focus().setTextAlign('right').run(), title: 'Align right' },
+    { label: 'Justify', symbol: '▤', active: editor.isActive({ textAlign: 'justify' }), run: () => editor.chain().focus().setTextAlign('justify').run(), title: 'Justify text' },
     { label: 'Horizontal rule', symbol: '—', active: false, run: () => editor.chain().focus().setHorizontalRule().run(), title: 'Scene break' },
     { label: 'Undo', symbol: '↶', active: false, run: () => editor.chain().focus().undo().run(), title: 'Undo (Ctrl+Z)' },
     { label: 'Redo', symbol: '↷', active: false, run: () => editor.chain().focus().redo().run(), title: 'Redo (Ctrl+Y)' },

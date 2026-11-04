@@ -14,7 +14,8 @@
     "@supabase/supabase-js": "^2.57.0",
     "@tiptap/react": "^3.0.0",
     "@tiptap/starter-kit": "^3.0.0",
-    "@tiptap/pm": "^3.0.0"
+    "@tiptap/pm": "^3.0.0",
+    "@tiptap/extension-text-align": "^3.0.0"
   },
   "devDependencies": {
     "typescript": "^5.8.0",
